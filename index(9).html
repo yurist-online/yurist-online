@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Юрист Онлайн — юридические услуги дистанционно</title>
+<meta name="description" content="Юридические документы онлайн, калькулятор госпошлины, консультации, кредитная история, проверка недвижимости и юридические услуги дистанционно.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--gold:#c9a84c;--gold-light:#e2c87a;--line:rgba(255,255,255,.08);--text:#f3efe8;--muted:rgba(243,239,232,.62);--green:#78c898;--violet:#ad9be0;--radius:22px}
+body{font-family:'Manrope',sans-serif;background:linear-gradient(180deg,#080808,#0d0d0e);color:var(--text);line-height:1.6}
+.container{width:min(1200px,calc(100% - 32px));margin:0 auto}
+header{position:sticky;top:0;z-index:20;backdrop-filter:blur(12px);background:rgba(8,8,8,.92);border-bottom:1px solid var(--line)}
+.header-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(201,168,76,.28);color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:24px;flex-shrink:0}
+.brand-title{font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1}
+.brand-sub{margin-top:4px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+nav{display:flex;gap:20px;flex-wrap:wrap}
+nav a{font-size:12px;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted);text-decoration:none}
+nav a:hover{color:var(--gold-light)}
+.hero{padding:84px 0 60px;border-bottom:1px solid var(--line)}
+.eyebrow{color:var(--gold);font-size:11px;letter-spacing:3px;text-transform:uppercase;margin-bottom:18px}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,72px);font-weight:400;line-height:.98;max-width:850px}
+h1 em{font-style:italic;color:var(--gold-light)}
+.hero p{margin-top:22px;max-width:760px;color:var(--muted);font-size:18px;line-height:1.8}
+.section{padding:70px 0;border-bottom:1px solid var(--line)}
+.section h2{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,48px);font-weight:400;line-height:1.05;margin-bottom:14px}
+.section p.lead{max-width:780px;color:var(--muted);margin-bottom:28px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:rgba(255,255,255,.02);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.tag{display:inline-block;margin-bottom:14px;padding:6px 12px;border-radius:999px;font-size:10px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;border:1px solid}
+.tag-green{color:var(--green);border-color:rgba(120,200,152,.36);background:rgba(120,200,152,.08)}
+.tag-gold{color:var(--gold);border-color:rgba(201,168,76,.28);background:rgba(201,168,76,.08)}
+.tag-violet{color:var(--violet);border-color:rgba(173,155,224,.32);background:rgba(173,155,224,.08)}
+.card h3{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:400;line-height:1.02;margin-bottom:10px}
+.card p{color:var(--muted);font-size:14px;margin-bottom:16px}
+.doc-list{list-style:none;display:grid;gap:8px;margin-bottom:16px}
+.doc-list li{border:1px solid var(--line);border-radius:12px;padding:10px 13px;font-size:13px;color:rgba(243,239,232,.82);background:rgba(255,255,255,.015);cursor:pointer}
+.doc-list li:hover,.doc-list li.active{border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.08);color:var(--gold-light)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border-radius:999px;border:1px solid rgba(201,168,76,.28);text-decoration:none;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:.2s;background:transparent}
+.btn-primary{background:var(--gold);color:#111;border-color:var(--gold)}
+.btn-primary:hover{background:var(--gold-light)}
+.btn-secondary{color:var(--gold)}
+.btn-secondary:hover{background:rgba(201,168,76,.08)}
+.form-card{border:1px solid var(--line);border-radius:var(--radius);padding:24px;background:rgba(255,255,255,.02);display:none}
+.form-card.visible{display:block}
+.bt{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:18px 0 10px;padding-bottom:7px;border-bottom:1px solid rgba(201,168,76,.12)}
+.bt:first-child{margin-top:0}
+.field{display:grid;gap:6px;margin-bottom:10px}
+.field label{font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted)}
+.field input,.field select,.field textarea{width:100%;min-height:48px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#111214;color:var(--text);font-size:13px;font-family:'Manrope',sans-serif}
+.field textarea{min-height:100px;resize:vertical}
+.field input::placeholder{color:rgba(243,239,232,.25)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.consent{display:flex;gap:10px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:12px;margin:14px 0;background:rgba(255,255,255,.01)}
+.consent label{font-size:12px;color:var(--muted);line-height:1.5}
+.submit-btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;border-radius:999px;border:none;background:var(--gold);color:#111;font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer}
+.submit-btn:hover{background:var(--gold-light)}
+.form-note{font-size:12px;color:var(--muted);margin-top:10px;padding:10px 12px;border:1px solid var(--line);border-radius:10px;line-height:1.6}
+.warn-box{font-size:12px;color:#e2a84c;margin:10px 0;padding:10px 12px;border:1px solid rgba(226,168,76,.25);border-radius:10px;background:rgba(226,168,76,.05);display:none;line-height:1.6}
+.child-block{border:1px solid rgba(201,168,76,.15);border-radius:12px;padding:14px;margin-bottom:10px;background:rgba(201,168,76,.03)}
+.child-title{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.hidden{display:none!important}
+.calc-box,.form-box{border:1px solid var(--line);border-radius:24px;padding:24px;background:rgba(255,255,255,.02);max-width:760px}
+.service-row{display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:8px;background:rgba(255,255,255,.015)}
+.service-row span.name{font-size:13px;color:rgba(243,239,232,.82);flex:1}
+.service-row .price{font-size:13px;color:var(--gold);font-weight:600;white-space:nowrap;margin-right:8px}
+.pay-btn{display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:.2s;white-space:nowrap}
+.pay-fixed{border:1px solid rgba(201,168,76,.5);background:rgba(201,168,76,.15);color:var(--gold)}
+.pay-fixed:hover{background:rgba(201,168,76,.28)}
+.pay-tbd{border:1px solid rgba(173,155,224,.3);background:rgba(173,155,224,.08);color:var(--violet)}
+.pay-tbd:hover{background:rgba(173,155,224,.18)}
+.result{margin-top:18px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.015);font-size:15px}
+.hidden{display:none!important}
+.provider{border-top:1px solid var(--line);margin-top:28px;padding-top:18px;font-size:13px;color:var(--muted);line-height:1.8}
+.provider a{color:var(--gold-light)}
+footer{padding:28px 0 40px}
+footer p{font-size:12px;color:var(--muted)}
+@media(max-width:980px){.cards{grid-template-columns:1fr}.g2,.g3{grid-template-columns:1fr}nav{display:none}}
+</style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=108437097','ym');
+ym(108437097,'init',{webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/108437097" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+<header>
+  <div class="container header-inner">
+    <div class="brand">
+      <div class="logo">IO</div>
+      <div><div class="brand-title">Юрист Онлайн</div><div class="brand-sub">Дистанционная юридическая помощь</div></div>
+    </div>
+    <nav>
+      <a href="#free-docs">Документы</a>
+      <a href="#calc-duty">Пошлина</a>
+      <a href="#paid-services">Платные услуги</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">Юридические документы, кредитная история и недвижимость</div>
+    <h1>Юридическая помощь <em>онлайн</em><br>по документам, спорам и проверке рисков</h1>
+    <p>Работаю дистанционно: консультации, кредитная история, претензии, иски, договоры, возражения, проверка недвижимости и разбор сложных ситуаций.</p>
+  </div>
+</section>
+
+<section class="section" id="free-docs">
+  <div class="container">
+    <h2>Бесплатные документы</h2>
+    <p class="lead">Выберите документ, заполните форму и отправьте заявку. Готовый документ будет направлен вам в Telegram.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="tag tag-green">Бесплатно</div>
+        <h3>Выберите документ</h3>
+        <p>Нажмите на нужный документ — откроется форма.</p>
+        <ul class="doc-list">
+          <li onclick="showForm('divorce',this)">Иск о расторжении брака</li>
+          <li onclick="showForm('alimony',this)">Иск о взыскании алиментов</li>
+          <li onclick="showForm('evict',this)">Иск о выписке из квартиры</li>
+          <li onclick="showForm('objection',this)">Возражение на судебный приказ</li>
+          <li onclick="showForm('absence',this)">Ходатайство без участия стороны</li>
+        </ul>
+      </div>
+
+      <div class="card" id="free-form-wrap" style="display:none">
+        <div class="tag tag-gold">Форма заявки</div>
+
+        <!-- РАЗВОД -->
+        <div class="form-card" id="form-divorce">
+          <div class="bt">Контактные данные</div>
+          <div class="g2"><div class="field"><label>Имя</label><input id="dv-cname" placeholder="Иванова Мария Петровна"></div><div class="field"><label>Телефон</label><input id="dv-cphone" placeholder="+7 900 000-00-00"></div></div>
+          <div class="field"><label>E-mail</label><input type="email" id="dv-cemail" placeholder="example@mail.ru"></div>
+          <div class="bt">Суд</div>
+          <div class="field"><label>Наименование суда</label><input id="dv-court" placeholder="Мировой судья судебного участка № 1 г. Кемерово"></div>
+          <div class="bt">Истец</div>
+          <div class="g2"><div class="field"><label>ФИО полностью</label><input id="dv-pname" placeholder="Фамилия Имя Отчество"></div><div class="field"><label>Дата рождения</label><input type="date" id="dv-pdob"></div></div>
+          <div class="field"><label>Место рождения</label><input id="dv-pbirth" placeholder="г. Кемерово"></div>
+          <div class="g2"><div class="field"><label>Серия и номер паспорта</label><input id="dv-ppas" placeholder="00 00 000000"></div><div class="field"><label>Дата выдачи</label><input type="date" id="dv-ppasdate"></div></div>
+          <div class="field"><label>Кем выдан</label><input id="dv-ppasisby" placeholder="Отдел МВД России по г. ..."></div>
+          <div class="g2"><div class="field"><label>Код подразделения</label><input id="dv-ppascode" placeholder="000-000"></div><div class="field"><label>Адрес регистрации</label><input id="dv-paddress" placeholder="г. Кемерово, ул. Ленина, д.1, кв.1"></div></div>
+          <div class="g2"><div class="field"><label>СНИЛС</label><input id="dv-psnils" placeholder="000-000-000 00"></div><div class="field"><label>ИНН</label><input id="dv-pinn" placeholder="000000000000"></div></div>
+          <div class="bt">Сведения о браке</div>
+          <div class="g3"><div class="field"><label>Серия и номер свидетельства</label><input id="dv-bnum" placeholder="II-ЛО 744552"></div><div class="field"><label>Дата заключения</label><input type="date" id="dv-bdate"></div><div class="field"><label>Орган ЗАГС</label><input id="dv-bzags" placeholder="ЗАГС г. Кемерово"></div></div>
+          <div class="g2"><div class="field"><label>Номер актовой записи</label><input id="dv-bact" placeholder="№ акта"></div><div class="field"><label>Дата прекращения совм. проживания</label><input type="date" id="dv-bsep"></div></div>
+          <div class="bt">Дети</div>
+          <div class="field"><label>Количество общих детей</label><select id="dv-childcount" onchange="renderChildren('dv')"><option value="0">Нет детей</option><option value="1">1</option><option value="2">2</option><option value="3">3 и более</option></select></div>
+          <div id="dv-children"></div>
+          <div class="bt">Споры</div>
+          <div class="field"><label>Есть спор о детях?</label><select id="dv-childspor" onchange="checkSpor('dv')"><option value="no">Нет</option><option value="yes">Да</option></select></div>
+          <div class="field"><label>Есть спор о разделе имущества?</label><select id="dv-propspor" onchange="checkSpor('dv')"><option value="no">Нет</option><option value="yes">Да</option></select></div>
+          <div class="warn-box" id="dv-warn">Ваша ситуация требует индивидуальной подготовки. Заявка будет направлена юристу — с вами свяжутся для уточнения деталей.</div>
+          <div class="bt">Ответчик</div>
+          <div class="g2"><div class="field"><label>ФИО полностью</label><input id="dv-dname" placeholder="Фамилия Имя Отчество"></div><div class="field"><label>Дата рождения</label><input id="dv-ddob" placeholder="не известно"></div></div>
+          <div class="field"><label>Место рождения</label><input id="dv-dbirth" placeholder="не известно"></div>
+          <div class="g2"><div class="field"><label>Серия и номер паспорта</label><input id="dv-dpas" placeholder="не известно"></div><div class="field"><label>Дата выдачи</label><input id="dv-dpasdate" placeholder="не известно"></div></div>
+          <div class="field"><label>Кем выдан</label><input id="dv-dpasisby" placeholder="не известно"></div>
+          <div class="g2"><div class="field"><label>Код подразделения</label><input id="dv-dpascode" placeholder="не известно"></div><div class="field"><label>Адрес регистрации</label><input id="dv-daddress" placeholder="не известно"></div></div>
+          <div class="g2"><div class="field"><label>СНИЛС</label><input id="dv-dsnils" placeholder="не известно"></div><div class="field"><label>ИНН</label><input id="dv-dinn" placeholder="не известно"></div></div>
+          <div class="consent"><input type="checkbox" id="dv-consent"><label for="dv-consent">Даю согласие на обработку персональных данных в соответствии с ФЗ № 152-ФЗ.</label></div>
+          <button class="submit-btn" onclick="submitForm('divorce')">Отправить заявку</button>
+          <div class="form-note">После отправки откроется Telegram. Готовый документ будет направлен вам.</div>
+        </div>
+
+        <!-- АЛИМЕНТЫ -->
+        <div class="form-card" id="form-alimony">
+          <div class="bt">Контактные данные</div>
+          <div class="g2"><div class="field"><label>Имя</label><input id="al-cname" placeholder="Иванова Мария Петровна"></div><div class="field"><label>Телефон</label><input id="al-cphone" placeholder="+7 900 000-00-00"></div></div>
+          <div class="field"><label>E-mail</label><input type="email" id="al-cemail"></div>
+          <div class="bt">Суд</div>
+          <div class="field"><label>Наименование суда</label><input id="al-court" placeholder="Районный суд г. Кемерово"></div>
+          <div class="bt">Истец</div>
+          <div class="g2"><div class="field"><label>ФИО полностью</label><input id="al-pname" placeholder="Фамилия Имя Отчество"></div><div class="field"><label>Дата рождения</label><input type="date" id="al-pdob"></div></div>
+          <div class="field"><label>Место рождения</label><input id="al-pbirth" placeholder="г. Кемерово"></div>
+          <div class="g2"><div class="field"><label>Серия и номер паспорта</label><input id="al-ppas" placeholder="00 00 000000"></div><div class="field"><label>Дата выдачи</label><input type="date" id="al-ppasdate"></div></div>
+          <div class="field"><label>Кем выдан</label><input id="al-ppasisby" placeholder="Отдел МВД России по г. ..."></div>
+          <div class="g2"><div class="field"><label>Код подразделения</label><input id="al-ppascode" placeholder="000-000"></div><div class="field"><label>Адрес регистрации</label><input id="al-paddress" placeholder="г. Кемерово, ул. Ленина, д.1, кв.1"></div></div>
+          <div class="g2"><div class="field"><label>СНИЛС</label><input id="al-psnils" placeholder="000-000-000 00"></div><div class="field"><label>ИНН</label><input id="al-pinn" placeholder="000000000000"></div></div>
+          <div class="bt">Семейное положение</div>
+          <div class="field"><label>В браке с ответчиком сейчас?</label><select id="al-married" onchange="toggleMarriage()"><option value="yes">Да, в браке</option><option value="no">Нет, в разводе</option></select></div>
+          <div id="al-divorceblock" class="hidden">
+            <div class="g3"><div class="field"><label>Дата расторжения брака</label><input type="date" id="al-divorcedate"></div><div class="field"><label>Серия и № свидетельства</label><input id="al-divorcecert" placeholder="серия и номер"></div><div class="field"><label>Орган ЗАГС</label><input id="al-divorcezags" placeholder="ЗАГС г. Кемерово"></div></div>
+          </div>
+          <div class="bt">Дети</div>
+          <div class="field"><label>Количество детей</label><select id="al-childcount" onchange="renderChildrenAl()"><option value="1">1</option><option value="2">2</option><option value="3">3 и более</option></select></div>
+          <div id="al-children"></div>
+          <div class="field"><label>Есть дети ответчика от других браков?</label><select id="al-otherchildren" onchange="toggleOtherChildren()"><option value="no">Нет</option><option value="yes">Да</option></select></div>
+          <div id="al-otherchildblock" class="hidden"><div class="g2"><div class="field"><label>Реквизиты исп. документа</label><input id="al-otherdoc" placeholder="Номер и дата"></div><div class="field"><label>Сумма удержания (руб./мес.)</label><input id="al-otheramount" placeholder="0"></div></div></div>
+          <div class="bt">Ответчик</div>
+          <div class="g2"><div class="field"><label>ФИО полностью</label><input id="al-dname" placeholder="Фамилия Имя Отчество"></div><div class="field"><label>Дата рождения</label><input id="al-ddob" placeholder="не известно"></div></div>
+          <div class="field"><label>Место рождения</label><input id="al-dbirth" placeholder="не известно"></div>
+          <div class="g2"><div class="field"><label>Серия и номер паспорта</label><input id="al-dpas" placeholder="не известно"></div><div class="field"><label>Дата выдачи</label><input id="al-dpasdate" placeholder="не известно"></div></div>
+          <div class="field"><label>Кем выдан</label><input id="al-dpasisby" placeholder="не известно"></div>
+          <div class="g2"><div class="field"><label>Код подразделения</label><input id="al-dpascode" placeholder="не известно"></div><div class="field"><label>Адрес регистрации</label><input id="al-daddress" placeholder="не известно"></div></div>
+          <div class="g2"><div class="field"><label>СНИЛС</label><input id="al-dsnils" placeholder="не известно"></div><div class="field"><label>ИНН</label><input id="al-dinn" placeholder="не известно"></div></div>
+          <div class="field"><label>Место работы ответчика</label><input id="al-dwork" placeholder="не известно"></div>
+          <div class="consent"><input type="checkbox" id="al-consent"><label for="al-consent">Даю согласие на обработку персональных данных в соответствии с ФЗ № 152-ФЗ.</label></div>
+          <button class="submit-btn" onclick="submitForm('alimony')">Отправить заявку</button>
+          <div class="form-note">После отправки откроется Telegram. Готовый документ будет направлен вам.</div>
+        </div><!-- ВЫПИСКА -->
+        <div class="form-card" id="form-evict">
+          <div class="bt">Контактные данные</div>
+          <div class="g2"><div class="field"><label>Имя</label><input id="ev-cname" placeholder="Иванова Мария Петровна"></div><div class="field"><label>Телефон</label><input id="ev-cphone" placeholder="+7 900 000-00-00"></div></div>
+          <div class="field"><label>E-mail</label><input type="email" id="ev-cemail"></div>
+          <div class="bt">Суд</div>
+          <div class="field"><label>Наименование суда</label><input id="ev-court" placeholder="Районный суд г. Кемерово"></div>
+          <div class="bt">Тип истца</div>
+          <div class="field"><label>Вы являетесь</label><select id="ev-type" onchange="toggleEvictType()"><option value="owner">Собственником квартиры</option><option value="tenant">Нанимателем (соцнайм)</option></select></div>
+          <div id="ev-ownerblock">
+            <div class="bt">Основание собственности</div>
+            <div class="g2"><div class="field"><label>Основание</label><select id="ev-ownerbasis"><option>Договор купли-продажи</option><option>Наследство</option><option>Дарение</option><option>Приватизация</option><option>Решение суда</option></select></div><div class="field"><label>Дата записи в ЕГРН</label><input type="date" id="ev-egrndate"></div></div>
+            <div class="field"><label>Номер записи ЕГРН</label><input id="ev-egrnnum" placeholder="№ записи"></div>
+            <div class="field"><label>Основание прекращения права ответчика</label><select id="ev-stopbasis"><option>Прекращение семейных отношений</option><option>Смена собственника (продажа, наследство)</option><option>Иное</option></select></div>
+          </div>
+          <div id="ev-tenantblock" class="hidden">
+            <div class="bt">Сведения о найме</div>
+            <div class="field"><label>Статус истца</label><select id="ev-status"><option>Наниматель</option><option>Член семьи нанимателя</option><option>Наймодатель</option></select></div>
+          </div>
+          <div class="bt">Квартира</div>
+          <div class="field"><label>Адрес квартиры</label><input id="ev-flataddr" placeholder="г. Кемерово, ул. Ленина, д.1, кв.1"></div>
+          <div class="g2"><div class="field"><label>Дата регистрации ответчика</label><input type="date" id="ev-regin"></div><div class="field"><label>Дата выезда ответчика</label><input type="date" id="ev-regout"></div></div>
+          <div class="field"><label>Платит ли ответчик коммунальные?</label><select id="ev-pays"><option value="no">Нет, не платит</option><option value="yes">Да, платит</option></select></div>
+          <div class="bt">Истец</div>
+          <div class="g2"><div class="field"><label>ФИО полностью</label><input id="ev-pname" placeholder="Фамилия Имя Отчество"></div><div class="field"><label>Дата рождения</label><input type="date" id="ev-pdob"></div></div>
+          <div class="field"><label>Место рождения</label><input id="ev-pbirth" placeholder="г. Кемерово"></div>
+          <div class="g2"><div class="field"><label>Серия и номер паспорта</label><input id="ev-ppas" placeholder="00 00 000000"></div><div class="field"><label>Дата выдачи</label><input type="date" id="ev-ppasdate"></div></div>
+          <div class="field"><label>Кем выдан</label><input id="ev-ppasisby" placeholder="Отдел МВД России по г. ..."></div>
+          <div class="g2"><div class="field"><label>Код подразделения</label><input id="ev-ppascode" placeholder="000-000"></div><div class="field"><label>Адрес регистрации</label><input id="ev-paddress" placeholder="г. Кемерово, ул. Ленина, д.1, кв.1"></div></div>
+          <div class="g2"><div class="field"><label>СНИЛС</label><input id="ev-psnils" placeholder="000-000-000 00"></div><div class="field"><label>ИНН</label><input id="ev-pinn" placeholder="000000000000"></div></div>
+          <div class="bt">Ответчик</div>
+          <div class="g2"><div class="field"><label>ФИО полностью</label><input id="ev-dname" placeholder="Фамилия Имя Отчество"></div><div class="field"><label>Дата рождения</label><input id="ev-ddob" placeholder="не известно"></div></div>
+          <div class="field"><label>Место рождения</label><input id="ev-dbirth" placeholder="не известно"></div>
+          <div class="g2"><div class="field"><label>Серия и номер паспорта</label><input id="ev-dpas" placeholder="не известно"></div><div class="field"><label>Дата выдачи</label><input id="ev-dpasdate" placeholder="не известно"></div></div>
+          <div class="field"><label>Кем выдан</label><input id="ev-dpasisby" placeholder="не известно"></div>
+          <div class="g2"><div class="field"><label>Код подразделения</label><input id="ev-dpascode" placeholder="не известно"></div><div class="field"><label>Адрес регистрации (факт.)</label><input id="ev-daddress" placeholder="не известно"></div></div>
+          <div class="g2"><div class="field"><label>СНИЛС</label><input id="ev-dsnils" placeholder="не известно"></div><div class="field"><label>ИНН</label><input id="ev-dinn" placeholder="не известно"></div></div>
+          <div class="consent"><input type="checkbox" id="ev-consent"><label for="ev-consent">Даю согласие на обработку персональных данных в соответствии с ФЗ № 152-ФЗ.</label></div>
+          <button class="submit-btn" onclick="submitForm('evict')">Отправить заявку</button>
+          <div class="form-note">После отправки откроется Telegram. Готовый документ будет направлен вам.</div>
+        </div>
+
+        <!-- ВОЗРАЖЕНИЕ -->
+        <div class="form-card" id="form-objection">
+          <div class="bt">Контактные данные</div>
+          <div class="g2"><div class="field"><label>Имя</label><input id="ob-cname" placeholder="Иванова Мария Петровна"></div><div class="field"><label>Телефон</label><input id="ob-cphone" placeholder="+7 900 000-00-00"></div></div>
+          <div class="field"><label>E-mail</label><input type="email" id="ob-cemail"></div>
+          <div class="bt">Должник (вы)</div>
+          <div class="g2"><div class="field"><label>ФИО полностью</label><input id="ob-pname" placeholder="Фамилия Имя Отчество"></div><div class="field"><label>Дата рождения</label><input type="date" id="ob-pdob"></div></div>
+          <div class="field"><label>Место рождения</label><input id="ob-pbirth" placeholder="г. Кемерово"></div>
+          <div class="g2"><div class="field"><label>Серия и номер паспорта</label><input id="ob-ppas" placeholder="00 00 000000"></div><div class="field"><label>Дата выдачи</label><input type="date" id="ob-ppasdate"></div></div>
+          <div class="field"><label>Кем выдан</label><input id="ob-ppasisby" placeholder="Отдел МВД России по г. ..."></div>
+          <div class="g2"><div class="field"><label>Код подразделения</label><input id="ob-ppascode" placeholder="000-000"></div><div class="field"><label>Адрес регистрации</label><input id="ob-paddress" placeholder="г. Кемерово, ул. Ленина, д.1, кв.1"></div></div>
+          <div class="g2"><div class="field"><label>СНИЛС</label><input id="ob-psnils" placeholder="000-000-000 00"></div><div class="field"><label>ИНН</label><input id="ob-pinn" placeholder="000000000000"></div></div>
+          <div class="bt">Судебный приказ</div>
+          <div class="g2"><div class="field"><label>Номер дела</label><input id="ob-case" placeholder="№ дела"></div><div class="field"><label>Дата вынесения приказа</label><input type="date" id="ob-date"></div></div>
+          <div class="g2"><div class="field"><label>Мировой судья (ФИО)</label><input id="ob-judge" placeholder="ФИО судьи"></div><div class="field"><label>Номер судебного участка</label><input id="ob-part" placeholder="№ участка"></div></div>
+          <div class="field"><label>Судебный район</label><input id="ob-district" placeholder="наименование судебного района"></div>
+          <div class="bt">Взыскатель и сумма</div>
+          <div class="g2"><div class="field"><label>Взыскатель</label><input id="ob-claimant" placeholder="ФИО или наименование"></div><div class="field"><label>Адрес взыскателя</label><input id="ob-claimantaddr" placeholder="адрес"></div></div>
+          <div class="g2"><div class="field"><label>Сумма взыскания (руб.)</label><input id="ob-amount" placeholder="0"></div><div class="field"><label>Госпошлина (руб.)</label><input id="ob-duty" placeholder="0"></div></div>
+          <div class="field"><label>Причина несогласия с приказом</label><textarea id="ob-reason" placeholder="Укажите причину несогласия"></textarea></div>
+          <div class="consent"><input type="checkbox" id="ob-consent"><label for="ob-consent">Даю согласие на обработку персональных данных в соответствии с ФЗ № 152-ФЗ.</label></div>
+          <button class="submit-btn" onclick="submitForm('objection')">Отправить заявку</button>
+          <div class="form-note">После отправки откроется Telegram. Готовый документ будет направлен вам.</div>
+        </div>
+
+        <!-- ХОДАТАЙСТВО -->
+        <div class="form-card" id="form-absence">
+          <div class="bt">Контактные данные</div>
+          <div class="g2"><div class="field"><label>Имя</label><input id="ab-cname" placeholder="Иванова Мария Петровна"></div><div class="field"><label>Телефон</label><input id="ab-cphone" placeholder="+7 900 000-00-00"></div></div>
+          <div class="field"><label>E-mail</label><input type="email" id="ab-cemail"></div>
+          <div class="bt">Заявитель (вы)</div>
+          <div class="g2"><div class="field"><label>ФИО полностью</label><input id="ab-pname" placeholder="Фамилия Имя Отчество"></div><div class="field"><label>Дата рождения</label><input type="date" id="ab-pdob"></div></div>
+          <div class="g2"><div class="field"><label>Серия и номер паспорта</label><input id="ab-ppas" placeholder="00 00 000000"></div><div class="field"><label>Адрес регистрации</label><input id="ab-paddress" placeholder="г. Кемерово, ул. Ленина, д.1, кв.1"></div></div>
+          <div class="g2"><div class="field"><label>СНИЛС</label><input id="ab-psnils" placeholder="000-000-000 00"></div><div class="field"><label>ИНН</label><input id="ab-pinn" placeholder="000000000000"></div></div>
+          <div class="bt">Дело</div>
+          <div class="g2"><div class="field"><label>Номер дела</label><input id="ab-case" placeholder="№ дела"></div><div class="field"><label>Дата и время заседания</label><input type="datetime-local" id="ab-hearing"></div></div>
+          <div class="field"><label>Наименование суда</label><input id="ab-court" placeholder="Районный суд г. Кемерово"></div>
+          <div class="field"><label>ФИО судьи</label><input id="ab-judge" placeholder="ФИО судьи"></div>
+          <div class="g2"><div class="field"><label>Истец по делу</label><input id="ab-plaintiff" placeholder="ФИО или наименование"></div><div class="field"><label>Ответчик по делу</label><input id="ab-defendant" placeholder="ФИО или наименование"></div></div>
+          <div class="field"><label>Предмет иска</label><input id="ab-subject" placeholder="о взыскании алиментов / о разводе и т.д."></div>
+          <div class="field"><label>Причина неявки</label><textarea id="ab-reason" placeholder="Укажите причину невозможности явки в суд"></textarea></div>
+          <div class="field"><label>Адрес для направления решения суда</label><input id="ab-sendaddr" placeholder="г. Кемерово, ул. Ленина, д.1, кв.1"></div>
+          <div class="consent"><input type="checkbox" id="ab-consent"><label for="ab-consent">Даю согласие на обработку персональных данных в соответствии с ФЗ № 152-ФЗ.</label></div>
+          <button class="submit-btn" onclick="submitForm('absence')">Отправить заявку</button>
+          <div class="form-note">После отправки откроется Telegram. Готовый документ будет направлен вам.</div>
+        </div>
+
+      </div>
+
+      <div class="card">
+        <div class="tag tag-violet">Как это работает</div>
+        <h3>Дальнейший порядок</h3>
+        <p>Выберите документ, заполните форму. После отправки данные придут юристу и готовый документ будет направлен вам в Telegram.</p>
+        <div class="result">Если ситуация сложнее — переходите в раздел платных услуг.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="calc-duty">
+  <div class="container">
+    <h2>Калькулятор госпошлины</h2>
+    <p class="lead">Введите цену иска и получите размер госпошлины по актуальным ставкам.</p>
+    <div class="calc-box">
+      <div class="field"><label>Сумма иска (руб.)</label><input type="number" id="claimAmount" placeholder="Например: 150000" min="0"></div>
+      <button type="button" class="btn btn-primary" onclick="calculateDuty()">Рассчитать госпошлину</button>
+      <div id="dutyResult" class="result hidden"></div>
+      <p style="margin-top:12px;font-size:12px;color:var(--muted)">Для отдельных категорий дел и заявителей могут действовать льготы.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="paid-services">
+  <div class="container">
+    <h2>Платные услуги</h2>
+    <p class="lead">Услуги с фиксированной стоимостью оплачиваются онлайн сразу. По остальным — оставьте заявку, я свяжусь с вами и согласую детали.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="tag tag-gold">Кредитная история</div>
+        <h3>Разбор и исправление</h3>
+        <div class="service-row"><span class="name">Экспресс-разбор КИ</span><span class="price">2 500 ₽</span><a class="pay-btn pay-fixed" href="https://b2b.cbrpay.ru/AS1B002BQMP95IEI8SIQ1RNR3J2VGCB0" target="_blank">Оплатить</a></div>
+        <div class="service-row"><span class="name">Исправление КИ</span><span class="price">20 000 ₽</span><a class="pay-btn pay-fixed" href="https://b2b.cbrpay.ru/AS1B007FQNGKI7K19TC862CU8GD7S05T" target="_blank">Оплатить</a></div>
+        <p style="margin-top:10px">Проверка отчёта, выявление просрочек и проблемных записей.</p>
+      </div>
+      <div class="card">
+        <div class="tag tag-violet">Документы</div>
+        <h3>Подготовка документов</h3>
+        <div class="service-row"><span class="name">Претензия физлица</span><span class="price">2 500 ₽</span><a class="pay-btn pay-fixed" href="https://b2b.cbrpay.ru/BS1B007RP5ADGSKU88RBD92K63N5E67J" target="_blank">Оплатить</a></div>
+        <div class="service-row"><span class="name">Претензия юрлица</span><span class="price">5 000 ₽</span><a class="pay-btn pay-fixed" href="https://b2b.cbrpay.ru/AS1B007718153SKI8IQAN2JR8C8GJDH6" target="_blank">Оплатить</a></div>
+        <div class="service-row"><span class="name">Возражение на судебный приказ</span><span class="price">499 ₽</span><a class="pay-btn pay-fixed" href="https://b2b.cbrpay.ru/BS1B000O4H6PQAHO8GGRH7SI1B225HE9" target="_blank">Оплатить</a></div>
+        <div class="service-row"><span class="name">Исковое заявление</span><span class="price">6 500 ₽</span><a class="pay-btn pay-fixed" href="https://b2b.cbrpay.ru/AS1B003778F8C7Q185GOB8QU4QBU6IUI" target="_blank">Оплатить</a></div>
+        <div class="service-row"><span class="name">Договор купли-продажи</span><span class="price">4 500 ₽</span><a class="pay-btn pay-fixed" href="https://b2b.cbrpay.ru/BS1B0025NKPST2BB8BRQIA31UJGV4695" target="_blank">Оплатить</a></div>
+        <div class="service-row"><span class="name">Другие документы</span><span class="price">договорная</span><a class="pay-btn pay-tbd" href="https://t.me/Ya_innaO?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C+%D1%85%D0%BE%D1%87%D1%83+%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C+%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C" target="_blank">Узнать →</a></div>
+      </div>
+      <div class="card">
+        <div class="tag tag-green">Анализ и сопровождение</div>
+        <h3>Консультации и проверка</h3>
+        <div class="service-row"><span class="name">Консультация</span><span class="price">1 500 ₽</span><a class="pay-btn pay-fixed" href="https://b2b.cbrpay.ru/BS1B001OGPTBGDAS96UOKVM4KQD28SN3" target="_blank">Оплатить</a></div>
+        <div class="service-row"><span class="name">Проверка недвижимости</span><span class="price">30 000 ₽</span><a class="pay-btn pay-fixed" href="https://b2b.cbrpay.ru/AS1B003J4DUJ78BG8EV95I4A1UR33UUQ" target="_blank">Оплатить</a></div>
+        <div class="service-row"><span class="name">Сопровождение сделки</span><span class="price">договорная</span><a class="pay-btn pay-tbd" href="https://t.me/Ya_innaO?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C+%D1%85%D0%BE%D1%87%D1%83+%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C+%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C" target="_blank">Узнать →</a></div>
+      </div>
+    </div>
+    <div style="margin-top:24px" class="form-box">
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:400;margin-bottom:14px">Заявка на услугу</h3>
+      <p style="color:var(--muted);font-size:14px;margin-bottom:16px">Для услуг с договорной ценой — оставьте заявку. Я свяжусь с вами и направлю ссылку на оплату.</p>
+      <form id="paidForm">
+        <div class="field"><label>Услуга</label><select id="paid_service" required><option value="">Выберите услугу</option><option>Другие документы (договорная стоимость)</option><option>Сопровождение сделки</option><option>Другой вопрос</option></select></div>
+        <div class="g2"><div class="field"><label>Имя</label><input type="text" id="paid_name" required></div><div class="field"><label>Телефон</label><input type="text" id="paid_phone" required></div></div>
+        <div class="field"><label>E-mail</label><input type="email" id="paid_email"></div>
+        <div class="field"><label>Описание ситуации</label><textarea id="paid_message" required placeholder="Кратко опишите вопрос" style="min-height:120px;resize:vertical;width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#111214;color:var(--text);font-size:13px;font-family:'Manrope',sans-serif"></textarea></div>
+        <div class="consent"><input type="checkbox" id="consent2" required><label for="consent2">Я даю согласие на обработку персональных данных.</label></div>
+        <button type="submit" class="btn btn-primary">Отправить заявку</button>
+      </form>
+      <div id="paidResult" class="result hidden"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contacts">
+  <div class="container">
+    <h2>Контакты</h2>
+    <p class="lead">Публичные контакты для связи по заявкам.</p>
+    <div class="cards">
+      <div class="card"><div class="tag tag-gold">Telegram</div><h3>Личный контакт</h3><p>@Ya_innaO</p><a class="btn btn-secondary" href="https://t.me/Ya_innaO" target="_blank">Открыть Telegram</a></div>
+      <div class="card"><div class="tag tag-violet">VK</div><h3>Связь</h3><p>vk.com/inna_mr</p><a class="btn btn-secondary" href="https://vk.com/inna_mr" target="_blank">Открыть VK</a></div>
+      <div class="card"><div class="tag tag-green">MAX</div><h3>Связь</h3><p>max.ru</p><a class="btn btn-secondary" href="https://max.ru/join/dxv1I27doIw8Tk5ISanmdR4uEWPMv327ioIVT0825Nw" target="_blank">Открыть MAX</a></div>
+    </div>
+    <div class="provider">
+      ИП Ожогина Инна<br>ИНН: 420700127535<br>Telegram: @Ya_innaO<br>Email: <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e881868689d9d1dedfc6dedfa885898184c69a9d">[email&#160;protected]</a><br>Телефон: +7 923 491-02-03<br>Оферта: <a href="offer.html">Публичная оферта</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Инна Ожогина. Юридический сервис. <a href="offer.html" style="color:var(--muted)">Публичная оферта</a></p>
+  </div>
+</footer>
+
+<script>
+const TG='Ya_innaO';
+
+function showForm(type,el){
+  document.querySelectorAll('.doc-list li').forEach(li=>li.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('free-form-wrap').style.display='block';
+  document.querySelectorAll('.form-card').forEach(f=>f.classList.remove('visible'));
+  document.getElementById('form-'+type).classList.add('visible');
+  if(type==='alimony')renderChildrenAl();
+  if(type==='divorce')renderChildren('dv');
+}
+
+function renderChildren(prefix){
+  const count=parseInt(document.getElementById(prefix+'-childcount').value)||0;
+  const c=document.getElementById(prefix+'-children');
+  c.innerHTML='';
+  for(let i=1;i<=count;i++){
+    c.innerHTML+=`<div class="child-block"><div class="child-title">Ребёнок ${i}</div>
+    <div class="g2"><div class="field"><label>ФИО ребёнка</label><input id="${prefix}-ch${i}-name" placeholder="Фамилия Имя Отчество"></div><div class="field"><label>Дата рождения</label><input type="date" id="${prefix}-ch${i}-dob"></div></div>
+    <div class="field"><label>Место рождения</label><input id="${prefix}-ch${i}-birth" placeholder="г. Кемерово"></div>
+    <div class="g2"><div class="field"><label>Серия и № свидетельства о рождении</label><input id="${prefix}-ch${i}-cert" placeholder="серия и номер"></div><div class="field"><label>Дата выдачи</label><input type="date" id="${prefix}-ch${i}-certdate"></div></div>
+    <div class="g2"><div class="field"><label>Орган ЗАГС</label><input id="${prefix}-ch${i}-zags" placeholder="ЗАГС г. Кемерово"></div><div class="field"><label>Номер актовой записи</label><input id="${prefix}-ch${i}-act" placeholder="№ акта"></div></div>
+    <div class="field"><label>ИНН ребёнка</label><input id="${prefix}-ch${i}-inn" placeholder="нет / 000000000000"></div>
+    </div>`;
+  }
+}
+
+function renderChildrenAl(){
+  const count=parseInt(document.getElementById('al-childcount').value)||1;
+  const c=document.getElementById('al-children');
+  c.innerHTML='';
+  for(let i=1;i<=count;i++){
+    c.innerHTML+=`<div class="child-block"><div class="child-title">Ребёнок ${i}</div>
+    <div class="g2"><div class="field"><label>ФИО ребёнка</label><input id="al-ch${i}-name" placeholder="Фамилия Имя Отчество"></div><div class="field"><label>Дата рождения</label><input type="date" id="al-ch${i}-dob"></div></div>
+    <div class="field"><label>Место рождения</label><input id="al-ch${i}-birth" placeholder="г. Кемерово"></div>
+    <div class="g2"><div class="field"><label>Серия и № свидетельства о рождении</label><input id="al-ch${i}-cert" placeholder="серия и номер"></div><div class="field"><label>Дата выдачи</label><input type="date" id="al-ch${i}-certdate"></div></div>
+    <div class="g2"><div class="field"><label>Орган ЗАГС</label><input id="al-ch${i}-zags" placeholder="ЗАГС г. Кемерово"></div><div class="field"><label>Номер актовой записи</label><input id="al-ch${i}-act" placeholder="№ акта"></div></div>
+    <div class="field"><label>ИНН ребёнка</label><input id="al-ch${i}-inn" placeholder="нет / 000000000000"></div>
+    </div>`;
+  }
+}
+
+function checkSpor(prefix){
+  const cs=document.getElementById(prefix+'-childspor').value;
+  const ps=document.getElementById(prefix+'-propspor').value;
+  document.getElementById(prefix+'-warn').style.display=(cs==='yes'||ps==='yes')?'block':'none';
+}
+function toggleMarriage(){
+  const v=document.getElementById('al-married').value;
+  document.getElementById('al-divorceblock').classList.toggle('hidden',v!=='no');
+}
+function toggleOtherChildren(){
+  const v=document.getElementById('al-otherchildren').value;
+  document.getElementById('al-otherchildblock').classList.toggle('hidden',v!=='yes');
+}
+function toggleEvictType(){
+  const v=document.getElementById('ev-type').value;
+  document.getElementById('ev-ownerblock').classList.toggle('hidden',v!=='owner');
+  document.getElementById('ev-tenantblock').classList.toggle('hidden',v!=='tenant');
+}
+
+function g(id){const el=document.getElementById(id);return el?(el.value.trim()||'не указано'):'н/д';}
+
+function collectKids(prefix,count){
+  let t='';
+  for(let i=1;i<=count;i++){
+    t+=`\nРебёнок ${i}: ${g(prefix+'-ch'+i+'-name')}, ${g(prefix+'-ch'+i+'-dob')}, место рожд.: ${g(prefix+'-ch'+i+'-birth')}`
+     +`\n  Свид. о рожд.: ${g(prefix+'-ch'+i+'-cert')} от ${g(prefix+'-ch'+i+'-certdate')}, ЗАГС: ${g(prefix+'-ch'+i+'-zags')}, акт №${g(prefix+'-ch'+i+'-act')}`
+     +`\n  ИНН: ${g(prefix+'-ch'+i+'-inn')}`;
+  }
+  return t;
+}
+
+function submitForm(type){
+  const pfx=type==='divorce'?'dv':type==='alimony'?'al':type==='evict'?'ev':type==='objection'?'ob':'ab';
+  if(!document.getElementById(pfx+'-consent').checked){alert('Необходимо согласие на обработку персональных данных.');return;}
+  const nm=document.getElementById(pfx+'-cname').value.trim();
+  const ph=document.getElementById(pfx+'-cphone').value.trim();
+  if(!nm||!ph){alert('Заполните имя и телефон.');return;}
+  let txt='';
+  if(type==='divorce'){
+    const cc=parseInt(g('dv-childcount'))||0;
+    const cs=g('dv-childspor'),ps=g('dv-propspor');
+    txt='ЗАЯВКА: Иск о расторжении брака'+(cs==='yes'||ps==='yes'?' [СЛОЖНЫЙ — индивидуально]':'')+'\n\n'
+      +`Контакты: ${nm}, ${ph}, ${g('dv-cemail')}\nСуд: ${g('dv-court')}\n\n`
+      +`ИСТЕЦ: ${g('dv-pname')}, ${g('dv-pdob')}, место рожд.: ${g('dv-pbirth')}\n`
+      +`Паспорт: ${g('dv-ppas')} от ${g('dv-ppasdate')}, кем: ${g('dv-ppasisby')}, код: ${g('dv-ppascode')}\n`
+      +`Адрес: ${g('dv-paddress')}, СНИЛС: ${g('dv-psnils')}, ИНН: ${g('dv-pinn')}\n\n`
+      +`БРАК: свид. ${g('dv-bnum')}, дата: ${g('dv-bdate')}, ЗАГС: ${g('dv-bzags')}, акт №${g('dv-bact')}\n`
+      +`Раздельное проживание с: ${g('dv-bsep')}\nСпор о детях: ${cs}, спор об имуществе: ${ps}\n`
+      +(cc>0?`\nДЕТИ:${collectKids('dv',cc)}\n`:'\nДетей нет\n')
+      +`\nОТВЕТЧИК: ${g('dv-dname')}, ${g('dv-ddob')}, место рожд.: ${g('dv-dbirth')}\n`
+      +`Паспорт: ${g('dv-dpas')} от ${g('dv-dpasdate')}, кем: ${g('dv-dpasisby')}, код: ${g('dv-dpascode')}\n`
+      +`Адрес: ${g('dv-daddress')}, СНИЛС: ${g('dv-dsnils')}, ИНН: ${g('dv-dinn')}`;
+  }else if(type==='alimony'){
+    const cc=parseInt(g('al-childcount'))||1;
+    const m=g('al-married');
+    txt='ЗАЯВКА: Иск о взыскании алиментов\n\n'
+      +`Контакты: ${nm}, ${ph}, ${g('al-cemail')}\nСуд: ${g('al-court')}\n\n`
+      +`ИСТЕЦ: ${g('al-pname')}, ${g('al-pdob')}, место рожд.: ${g('al-pbirth')}\n`
+      +`Паспорт: ${g('al-ppas')} от ${g('al-ppasdate')}, кем: ${g('al-ppasisby')}, код: ${g('al-ppascode')}\n`
+      +`Адрес: ${g('al-paddress')}, СНИЛС: ${g('al-psnils')}, ИНН: ${g('al-pinn')}\n\n`
+      +`В браке: ${m==='yes'?'да':'нет'}\n`
+      +(m==='no'?`Развод: ${g('al-divorcedate')}, свид.: ${g('al-divorcecert')}, ЗАГС: ${g('al-divorcezags')}\n`:'')
+      +`\nДЕТИ:${collectKids('al',cc)}\n`
+      +`\nДети ответчика от др. браков: ${g('al-otherchildren')}\n`
+      +(g('al-otherchildren')==='yes'?`Исп. документ: ${g('al-otherdoc')}, сумма: ${g('al-otheramount')} руб.\n`:'')
+      +`\nОТВЕТЧИК: ${g('al-dname')}, ${g('al-ddob')}, место рожд.: ${g('al-dbirth')}\n`
+      +`Паспорт: ${g('al-dpas')} от ${g('al-dpasdate')}, кем: ${g('al-dpasisby')}, код: ${g('al-dpascode')}\n`
+      +`Адрес: ${g('al-daddress')}, СНИЛС: ${g('al-dsnils')}, ИНН: ${g('al-dinn')}\nРабота: ${g('al-dwork')}`;
+  }else if(type==='evict'){
+    const et=g('ev-type');
+    txt='ЗАЯВКА: Иск о выписке из квартиры\n\n'
+      +`Контакты: ${nm}, ${ph}, ${g('ev-cemail')}\nСуд: ${g('ev-court')}\n`
+      +`Тип истца: ${et==='owner'?'Собственник':'Наниматель'}\n`
+      +(et==='owner'?`Основание: ${g('ev-ownerbasis')}, ЕГРН №${g('ev-egrnnum')} от ${g('ev-egrndate')}\nПрекращение права: ${g('ev-stopbasis')}\n`:`Статус: ${g('ev-status')}\n`)
+      +`\nКВАРТИРА: ${g('ev-flataddr')}\nРегистрация ответчика с: ${g('ev-regin')}, выезд: ${g('ev-regout')}\nКоммунальные: ${g('ev-pays')==='no'?'не платит':'платит'}\n`
+      +`\nИСТЕЦ: ${g('ev-pname')}, ${g('ev-pdob')}, место рожд.: ${g('ev-pbirth')}\n`
+      +`Паспорт: ${g('ev-ppas')} от ${g('ev-ppasdate')}, кем: ${g('ev-ppasisby')}, код: ${g('ev-ppascode')}\n`
+      +`Адрес: ${g('ev-paddress')}, СНИЛС: ${g('ev-psnils')}, ИНН: ${g('ev-pinn')}\n`
+      +`\nОТВЕТЧИК: ${g('ev-dname')}, ${g('ev-ddob')}, место рожд.: ${g('ev-dbirth')}\n`
+      +`Паспорт: ${g('ev-dpas')} от ${g('ev-dpasdate')}, кем: ${g('ev-dpasisby')}, код: ${g('ev-dpascode')}\n`
+      +`Адрес факт.: ${g('ev-daddress')}, СНИЛС: ${g('ev-dsnils')}, ИНН: ${g('ev-dinn')}`;
+  }else if(type==='objection'){
+    txt='ЗАЯВКА: Возражение на судебный приказ\n\n'
+      +`Контакты: ${nm}, ${ph}, ${g('ob-cemail')}\n\n`
+      +`ДОЛЖНИК: ${g('ob-pname')}, ${g('ob-pdob')}, место рожд.: ${g('ob-pbirth')}\n`
+      +`Паспорт: ${g('ob-ppas')} от ${g('ob-ppasdate')}, кем: ${g('ob-ppasisby')}, код: ${g('ob-ppascode')}\n`
+      +`Адрес: ${g('ob-paddress')}, СНИЛС: ${g('ob-psnils')}, ИНН: ${g('ob-pinn')}\n\n`
+      +`ПРИКАЗ: дело №${g('ob-case')} от ${g('ob-date')}\nСудья: ${g('ob-judge')}, участок №${g('ob-part')}, район: ${g('ob-district')}\n\n`
+      +`ВЗЫСКАТЕЛЬ: ${g('ob-claimant')}, ${g('ob-claimantaddr')}\nСумма: ${g('ob-amount')} руб., госпошлина: ${g('ob-duty')} руб.\n\n`
+      +`Причина несогласия: ${g('ob-reason')}`;
+  }else if(type==='absence'){
+    txt='ЗАЯВКА: Ходатайство о рассмотрении без участия\n\n'
+      +`Контакты: ${nm}, ${ph}, ${g('ab-cemail')}\n\n`
+      +`ЗАЯВИТЕЛЬ: ${g('ab-pname')}, ${g('ab-pdob')}\nПаспорт: ${g('ab-ppas')}\nАдрес: ${g('ab-paddress')}\nСНИЛС: ${g('ab-psnils')}, ИНН: ${g('ab-pinn')}\n\n`
+      +`ДЕЛО №${g('ab-case')}\nСуд: ${g('ab-court')}, судья: ${g('ab-judge')}\nДата заседания: ${g('ab-hearing')}\n`
+      +`Истец: ${g('ab-plaintiff')}, ответчик: ${g('ab-defendant')}\nПредмет: ${g('ab-subject')}\n`
+      +`Причина неявки: ${g('ab-reason')}\nАдрес для решения: ${g('ab-sendaddr')}`;
+  }
+  window.open('https://t.me/'+TG+'?text='+encodeURIComponent(txt),'_blank');
+}
+
+function calculateDuty(){
+  const input=document.getElementById('claimAmount');
+  const box=document.getElementById('dutyResult');
+  const s=parseFloat(input.value||0);
+  if(isNaN(s)||s<=0){box.classList.remove('hidden');box.innerHTML='Введите корректную сумму иска.';return;}
+  let d=0;
+  if(s<=100000)d=4000;
+  else if(s<=300000)d=4000+(s-100000)*.03;
+  else if(s<=500000)d=10000+(s-300000)*.025;
+  else if(s<=1000000)d=15000+(s-500000)*.02;
+  else if(s<=3000000)d=25000+(s-1000000)*.01;
+  else if(s<=8000000)d=45000+(s-3000000)*.007;
+  else if(s<=24000000)d=80000+(s-8000000)*.0035;
+  else if(s<=50000000)d=136000+(s-24000000)*.003;
+  else if(s<=100000000)d=214000+(s-50000000)*.002;
+  else{d=314000+(s-100000000)*.0015;if(d>900000)d=900000;}
+  box.classList.remove('hidden');
+  box.innerHTML='<b>Размер госпошлины: '+Math.round(d).toLocaleString('ru-RU')+' руб.</b>';
+}
+
+document.getElementById('paidForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const s=document.getElementById('paid_service').value;
+  const n=document.getElementById('paid_name').value.trim();
+  const p=document.getElementById('paid_phone').value.trim();
+  const m=document.getElementById('paid_message').value.trim();
+  const box=document.getElementById('paidResult');
+  if(!s){alert('Выберите услугу.');return;}
+  if(!n||!p||!m){alert('Заполните обязательные поля.');return;}
+  const txt='Новая заявка\n\nУслуга: '+s+'\nИмя: '+n+'\nТелефон: '+p+'\nEmail: '+document.getElementById('paid_email').value.trim()+'\nОписание: '+m;
+  window.open('https://t.me/'+TG+'?text='+encodeURIComponent(txt),'_blank');
+  box.classList.remove('hidden');
+  box.innerHTML='<b>Заявка отправлена!</b> Ожидайте звонка или сообщения в Telegram.';
+});
+</script>
+</body>
+</html>
